@@ -18,6 +18,7 @@ func main() {
         remote := flag.String("remote", "", "remote to proxy to ex. http://localhost")
         certFile := flag.String("cert", "cert.pem", "path of the cert file")
         keyFile := flag.String("key", "key.pem", "path of the key file")
+        host := flag.String("host", ":8090", "host to run this proxy on")
 
         flag.Parse()
 
@@ -42,5 +43,5 @@ func main() {
 
         })
 
-        log.Fatal(http.ListenAndServeTLS(":8090", *certFile, *keyFile, nil))
+        log.Fatal(http.ListenAndServeTLS(*host, *certFile, *keyFile, nil))
 }
